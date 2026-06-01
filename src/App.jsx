@@ -1,122 +1,116 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import React, { useState } from 'react';
+import Navbar from './components/Navbar';
+import ContactModal from './components/ContactModal';
+import Hero from './components/Hero';
+import EstimationForm from './components/EstimationForm';
+import Marketplace from './components/Marketplace';
+import Benefits from './components/Benefits';
+import Comparison from './components/Comparison';
+import Testimonials from './components/Testimonials';
+import AgentCommercial from './components/AgentCommercial';
+import FAQ from './components/FAQ';
+import Footer from './components/Footer';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [contactOpen, setContactOpen] = useState(false);
+
+  // Smooth scroll helper for absolute section offsets
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 80; // height of sticky navbar
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = el.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-root-wrapper">
+      {/* Dynamic Background Grids */}
+      <div className="global-mesh-grid"></div>
 
-      <div className="ticks"></div>
+      {/* Primary Sticky Header */}
+      <Navbar 
+        onOpenContact={() => setContactOpen(true)} 
+        onScrollToSection={scrollToSection} 
+      />
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      {/* Main Page Layout */}
+      <main>
+        <Hero onScrollToSection={scrollToSection} />
+        
+        <div className="ticks-decoration"></div>
+        
+        <Marketplace onOpenContact={() => setContactOpen(true)} />
+        
+        <div className="ticks-decoration"></div>
+        
+        <EstimationForm onOpenContact={() => setContactOpen(true)} />
+        
+        <div className="ticks-decoration"></div>
+        
+        <Benefits />
+        
+        <div className="ticks-decoration"></div>
+        
+        <Comparison />
+        
+        <div className="ticks-decoration"></div>
+        
+        <Testimonials />
+        
+        <div className="ticks-decoration"></div>
+        
+        <AgentCommercial />
+        
+        <div className="ticks-decoration"></div>
+        
+        <FAQ />
+      </main>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+      {/* Footnotes */}
+      <Footer 
+        onScrollToSection={scrollToSection} 
+        onOpenContact={() => setContactOpen(true)} 
+      />
+
+      {/* Universal Floating Modal Overlay */}
+      <ContactModal 
+        isOpen={contactOpen} 
+        onClose={() => setContactOpen(false)} 
+      />
+
+      <style>{`
+        .app-root-wrapper {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          position: relative;
+        }
+
+        /* Ambient subtle background grid for luxury tech aesthetic */
+        .global-mesh-grid {
+          position: absolute;
+          inset: 0;
+          z-index: -2;
+          pointer-events: none;
+          background-image: 
+            radial-gradient(var(--border-light) 1px, transparent 1px),
+            radial-gradient(var(--border-light) 1px, transparent 1px);
+          background-size: 40px 40px;
+          background-position: 0 0, 20px 20px;
+          opacity: 0.5;
+        }
+      `}</style>
+    </div>
+  );
 }
 
-export default App
+export default App;
