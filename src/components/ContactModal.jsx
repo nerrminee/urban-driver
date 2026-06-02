@@ -53,6 +53,10 @@ const ContactModal = ({ isOpen, onClose }) => {
             <div className="modal-header">
               <h2>Contacter un conseiller</h2>
               <p>Discutons de votre projet d'achat ou de vente de véhicule d'occasion. Notre accompagnement est 100% gratuit.</p>
+              <div className="modal-contact-details" aria-label="Coordonnées Urban Driver">
+                <a href="mailto:Accueil.urbandriver@gmail.com">Accueil.urbandriver@gmail.com</a>
+                <a href="tel:+33756880819">+33 7 56 88 08 19</a>
+              </div>
             </div>
 
             <form onSubmit={handleSubmit} className="modal-form">
@@ -196,6 +200,24 @@ const ContactModal = ({ isOpen, onClose }) => {
         .modal-header p {
           color: var(--text-secondary);
           font-size: 0.95rem;
+        }
+
+        .modal-contact-details {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px 18px;
+          margin-top: 16px;
+        }
+
+        .modal-contact-details a {
+          color: var(--primary);
+          font-weight: 700;
+          font-size: 0.95rem;
+          overflow-wrap: anywhere;
+        }
+
+        .modal-contact-details a:hover {
+          color: var(--accent);
         }
 
         .form-grid {

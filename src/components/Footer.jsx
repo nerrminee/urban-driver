@@ -32,6 +32,10 @@ const Footer = ({ onScrollToSection, onOpenContact }) => {
           <p className="footer-brand-tagline">
             Votre tiers de confiance automobile. Sécurisation complète des paiements, historique transparent et garanties systématiques de 3 à 36 mois.
           </p>
+          <div className="footer-contact-details" aria-label="Coordonnées Urban Driver">
+            <a href="mailto:Accueil.urbandriver@gmail.com">Accueil.urbandriver@gmail.com</a>
+            <a href="tel:+33756880819">+33 7 56 88 08 19</a>
+          </div>
           <div className="social-links-row">
             <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" className="social-icon-btn" aria-label="Instagram">
               📸
@@ -149,6 +153,24 @@ const Footer = ({ onScrollToSection, onOpenContact }) => {
           font-size: 0.9rem;
           line-height: 1.6;
           color: var(--text-muted);
+        }
+
+        .footer-contact-details {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          font-size: 0.9rem;
+        }
+
+        .footer-contact-details a {
+          color: var(--text-secondary);
+          font-weight: 700;
+          overflow-wrap: anywhere;
+          transition: color var(--transition-fast);
+        }
+
+        .footer-contact-details a:hover {
+          color: var(--primary);
         }
 
         .social-links-row {
