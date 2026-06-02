@@ -103,6 +103,7 @@ const Footer = ({ onScrollToSection, onOpenContact }) => {
             <a href="#" onClick={(e) => { e.preventDefault(); onOpenContact(); }}>Politique de confidentialité</a>
             <a href="#" onClick={(e) => { e.preventDefault(); onOpenContact(); }}>Politique des cookies</a>
             <a href="#" onClick={(e) => { e.preventDefault(); onOpenContact(); }}>Mentions Légales</a>
+            <a href="#/admin" style={{ color: 'var(--primary)', fontWeight: '600' }}>Espace Admin</a>
           </div>
         </div>
       </div>

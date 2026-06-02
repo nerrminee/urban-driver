@@ -1,83 +1,10 @@
 import React, { useState } from 'react';
 
-const Marketplace = ({ onOpenContact }) => {
+const Marketplace = ({ onOpenContact, cars = [] }) => {
   const [selectedBrand, setSelectedBrand] = useState('all');
   const [selectedFuel, setSelectedFuel] = useState('all');
   const [sortBy, setSortBy] = useState('featured');
   const [selectedCar, setSelectedCar] = useState(null);
-
-  const cars = [
-    {
-      id: 1,
-      brand: 'Tesla',
-      model: 'Model S Plaid',
-      year: '2022',
-      mileage: 28000,
-      fuel: 'Électrique',
-      gearbox: 'Automatique',
-      price: 64900,
-      monthly: 580,
-      image: '/hero-car.png',
-      featured: true,
-      specs: '1020 ch, 0-100 km/h en 2.1s, Autonomie 600 km, Pilotage automatique.'
-    },
-    {
-      id: 2,
-      brand: 'Porsche',
-      model: '911 Carrera S',
-      year: '2020',
-      mileage: 32000,
-      fuel: 'Essence',
-      gearbox: 'Automatique',
-      price: 114500,
-      monthly: 1040,
-      image: 'https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?w=600&auto=format&fit=crop&q=80',
-      featured: true,
-      specs: '450 ch, Toit ouvrant panoramique, Échappement sport, Phares LED PDLS+.'
-    },
-    {
-      id: 3,
-      brand: 'Audi',
-      model: 'e-tron GT',
-      year: '2023',
-      mileage: 14000,
-      fuel: 'Électrique',
-      gearbox: 'Automatique',
-      price: 82900,
-      monthly: 740,
-      image: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?w=600&auto=format&fit=crop&q=80',
-      featured: true,
-      specs: '530 ch, Quattro, Suspension pneumatique adaptative, Jantes 21".'
-    },
-    {
-      id: 4,
-      brand: 'BMW',
-      model: 'M4 Competition',
-      year: '2021',
-      mileage: 41000,
-      fuel: 'Essence',
-      gearbox: 'Automatique',
-      price: 79900,
-      monthly: 710,
-      image: 'https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&auto=format&fit=crop&q=80',
-      featured: false,
-      specs: '510 ch, Pack carbone extérieur, Affichage tête haute, Sièges M Sport ventilés.'
-    },
-    {
-      id: 5,
-      brand: 'Mercedes',
-      model: 'AMG CLA 45 S',
-      year: '2022',
-      mileage: 22000,
-      fuel: 'Essence',
-      gearbox: 'Automatique',
-      price: 62500,
-      monthly: 560,
-      image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=600&auto=format&fit=crop&q=80',
-      featured: false,
-      specs: '421 ch, Transmission intégrale 4MATIC+, Échappement Performance, Pack Nuit.'
-    }
-  ];
 
   // Filters logic
   const filteredCars = cars.filter(car => {
@@ -91,8 +18,8 @@ const Marketplace = ({ onOpenContact }) => {
     return b.id - a.id; // default featured/recent
   });
 
-  const brandsList = ['Tesla', 'Porsche', 'Audi', 'BMW', 'Mercedes'];
-  const fuelsList = ['Essence', 'Électrique'];
+  const brandsList = Array.from(new Set(cars.map(c => c.brand)));
+  const fuelsList = Array.from(new Set(cars.map(c => c.fuel)));
 
   return (
     <section id="marketplace" className="section marketplace-section">
